@@ -1,4 +1,5 @@
 import requests
+import os
 from bs4 import BeautifulSoup
 from PyPDF2 import PdfFileMerger, PdfFileReader
 
@@ -54,3 +55,10 @@ if __name__=="__main__":
 	merger.write(output)
 	output.close()
 
+	counter = 1
+	while (counter <= numpages):
+		if os.path.isfile(str(counter)+'.pdf'):
+			os.remove(str(counter)+'.pdf')
+			counter += 1
+		else:   
+			print("Error: %s file not found" % myfile)
